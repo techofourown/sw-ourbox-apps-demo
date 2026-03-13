@@ -11,21 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Validate script syntax
+        run: bash -n scripts/check-apps-manifest.sh scripts/check-app-builds.sh
       - name: Validate manifest and source layout
-        run: |
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-
-          manifest = json.loads(Path("apps-manifest.json").read_text(encoding="utf-8"))
-          assert manifest["schema"] == 1
-          assert manifest["kind"] == "ourbox-apps-collection"
-          apps = manifest["apps"]
-          assert len(apps) >= 2
-          for app in apps:
-            src = Path(app["source_path"])
-            assert src.is_dir(), f"missing app source path: {src}"
-            assert (src / "Dockerfile").is_file(), f"missing Dockerfile: {src / 'Dockerfile'}"
-            assert app["image_repo"].startswith("ghcr.io/techofourown/sw-ourbox-apps-demo/"), app["image_repo"]
-          print("apps-manifest.json and source layout look valid")
-          PY
+        run: bash scripts/check-apps-manifest.sh
+      - name: Build application images
+        run: bash scripts/check-app-builds.sh
