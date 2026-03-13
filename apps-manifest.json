@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "kind": "ourbox-apps-collection",
+  "collection_id": "demo",
+  "display_name": "Demo Apps Publisher",
+  "apps": [
+    {
+      "app_id": "landing",
+      "display_name": "Landing",
+      "source_path": "apps/landing",
+      "image_repo": "ghcr.io/techofourown/sw-ourbox-apps-demo/landing",
+      "default_tag": "latest"
+    },
+    {
+      "app_id": "todo-bloom",
+      "display_name": "Todo Bloom",
+      "source_path": "apps/todo-bloom",
+      "image_repo": "ghcr.io/techofourown/sw-ourbox-apps-demo/todo-bloom",
+      "default_tag": "latest"
+    }
+  ],
+  "notes": "Published images from this repo are intended to be consumed by sw-ourbox-catalog-* repositories."
+}
