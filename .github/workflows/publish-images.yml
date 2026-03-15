@@ -108,6 +108,9 @@ jobs:
         with:
           app-id: ${{ secrets.SEMREL_APP_ID }}
           private-key: ${{ secrets.SEMREL_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            sw-ourbox-catalog-demo
 
       - name: Trigger downstream catalog refresh
         env:
