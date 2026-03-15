@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: rhysd/actionlint@v1.7.11
       - name: Validate script syntax
-        run: bash -n scripts/check-apps-manifest.sh scripts/check-app-builds.sh
+        run: bash -n scripts/check-apps-manifest.sh scripts/check-app-builds.sh scripts/check-workflow-guards.sh
+      - name: Validate workflow guards
+        run: bash scripts/check-workflow-guards.sh
       - name: Validate manifest and source layout
         run: bash scripts/check-apps-manifest.sh
       - name: Build application images
